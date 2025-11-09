@@ -72,8 +72,17 @@ export const validateQRCode = (puzzleId: string, qrData: string): {
 } => {
   // Validazione specifica per puzzle QR
   if (puzzleId === 'P02') {
-    const validFragments = ['INIT_', 'LOAD_', 'POWER_', 'CRONOS_', 'SYSTEM'];
-    if (validFragments.includes(qrData)) {
+    // Nuovi QR con anagrammi + numeri romani
+    const validQRs = ['TIIN_I', 'ODLA_II', 'ERWOP_III', 'SCORNO_IV', 'STYMSE_V'];
+    const fragments = ['INIT_', 'LOAD_', 'POWER_', 'CRONOS_', 'SYSTEM'];
+
+    const index = validQRs.findIndex(qr => qr === qrData);
+    if (index !== -1) {
+      return { valid: true, fragment: fragments[index] };
+    }
+
+    // Supporta anche i vecchi QR per retrocompatibilità
+    if (fragments.includes(qrData)) {
       return { valid: true, fragment: qrData };
     }
   }
