@@ -1,0 +1,279 @@
+# 📝 Guida Setup Materiali - Cronache dell'Osservatorio Temporale
+
+Questa guida ti aiuta a preparare tutti i materiali fisici necessari per giocare.
+
+## 🖨️ Materiali da Stampare
+
+### P01: Codice di Accesso Temporale
+
+**Cosa stampare**: 1 foglio A4
+
+**Come prepararlo**:
+1. Disegna 4 orologi digitali con ore diverse:
+   - Orologio 1: 03:00 (disegna 2 stelle sopra) ✶✶
+   - Orologio 2: 07:00 (disegna 3 stelle sopra) ✶✶✶
+   - Orologio 3: 02:00 (disegna 1 stella sopra) ✶
+   - Orologio 4: 11:00 (disegna 2 stelle sopra) ✶✶
+
+2. Soluzione: 3×2=06, 7×3=21, 2×1=02, 11×2=22 → **062122**
+   (Nota: nella config app la soluzione è 062102, aggiustare se necessario)
+
+**Template suggerito**:
+```
+┌─────────────────────────────┐
+│   ✶✶                        │
+│   ╔═══════╗                 │
+│   ║ 03:00 ║                 │
+│   ╚═══════╝                 │
+│                             │
+│   ✶✶✶                       │
+│   ╔═══════╗                 │
+│   ║ 07:00 ║                 │
+│   ╚═══════╝                 │
+│                             │
+│   ✶                         │
+│   ╔═══════╗                 │
+│   ║ 02:00 ║                 │
+│   ╚═══════╝                 │
+│                             │
+│   ✶✶                        │
+│   ╔═══════╗                 │
+│   ║ 11:00 ║                 │
+│   ╚═══════╝                 │
+└─────────────────────────────┘
+```
+
+---
+
+### P02: Protocollo di Boot
+
+**Cosa stampare**: 5 documenti A4 + 5 QR codes
+
+**QR Codes da generare** (usa https://www.qr-code-generator.com):
+1. QR con testo: `INIT_`
+2. QR con testo: `LOAD_`
+3. QR con testo: `POWER_`
+4. QR con testo: `CRONOS_`
+5. QR con testo: `SYSTEM`
+
+**Come prepararlo**:
+1. Crea 5 documenti con aspetto "vintage/scientifico"
+2. Ogni documento ha un tema:
+   - Doc 1: "Sistema di Inizializzazione"
+   - Doc 2: "Protocollo di Caricamento"
+   - Doc 3: "Alimentazione Primaria"
+   - Doc 4: "Dispositivo Cronos"
+   - Doc 5: "Sistema Operativo"
+3. Stampa ogni QR code e incollalo sul rispettivo documento (angolo, watermark)
+4. Opzionale: "invecchia" i documenti con caffè
+
+---
+
+### P03: Il Diario del Dr. Vance
+
+**Cosa stampare**: 5 pagine A4 + post-it colorati
+
+**Come prepararlo**:
+1. Scrivi 5 pagine di "diario" con testo fittizio
+2. In ogni pagina, evidenzia 1 lettera in giallo:
+   - Pagina 1: evidenzia una **M**
+   - Pagina 2: evidenzia una **A**
+   - Pagina 3: evidenzia una **R**
+   - Pagina 4: evidenzia una **Z**
+   - Pagina 5: evidenzia una **O**
+
+3. Soluzione: **MARZO**
+
+**Esempio pagina 1**:
+```
+Data: 12 Marzo 1967
+
+Oggi abbia**M**o fatto progressi
+straordinari con il Test Omega.
+Il dispositivo sembra rispondere
+alle frequenze temporali...
+```
+
+4. Metti un post-it colorato su ogni pagina
+5. Rilegale insieme (pinzatrice o clip)
+
+---
+
+### P04: Coordinate Temporali
+
+**Cosa stampare**: 1 mappa del mondo A3 + 5 QR codes piccoli
+
+**QR Codes da generare**:
+1. `1945-07-16` (Alamogordo, New Mexico)
+2. `1952-11-01` (Atollo Marshall)
+3. `1957-10-04` (Baikonur, Kazakistan)
+4. `1962-10-16` (Cuba)
+5. `1967-03-15` (Oceano Pacifico)
+
+**Come prepararlo**:
+1. Stampa una mappa del mondo (A3 o 2× A4 incollati)
+2. Segna le 5 località con puntine/pennarello
+3. Vicino a ogni località, incolla/appendi il QR code corrispondente
+
+---
+
+### P05-P06: Puzzle Digitali
+
+Questi puzzle sono interamente digitali, nessun materiale fisico necessario.
+
+---
+
+### P07: Password Quantistica
+
+**Cosa stampare**: 4 bigliettini
+
+**Come prepararlo**:
+1. Crea 4 bigliettini con queste costanti:
+
+```
+╔══════════════════════════════╗
+║  COSTANTE DI PLANCK (h)      ║
+║  h = 662607                  ║
+║  [simbolo: ℏ]                ║
+╚══════════════════════════════╝
+
+╔══════════════════════════════╗
+║  VELOCITÀ DELLA LUCE (C)     ║
+║  C = 299792 km/s             ║
+║  [simbolo: c]                ║
+╚══════════════════════════════╝
+
+╔══════════════════════════════╗
+║  NUMERO DI AVOGADRO (Na)     ║
+║  Na = 602214 × 10^18         ║
+║  [simbolo: Nₐ]               ║
+╚══════════════════════════════╝
+
+╔══════════════════════════════╗
+║  COSTANTE GRAVITAZIONALE (G) ║
+║  G = 667430                  ║
+║  [simbolo: G]                ║
+╚══════════════════════════════╝
+```
+
+2. Nascondi questi biglietti nella ZONA B (tavolo)
+3. Soluzione finale: **29960602**
+
+---
+
+### P08: Sincronizzazione
+
+Puzzle digitale, nessun materiale fisico.
+
+---
+
+### P09: Archivio Olografico
+
+**Cosa stampare**: 10 foto vintage A5 o A6
+
+**Come prepararlo**:
+1. Scarica 10 immagini vintage/sci-fi (es. da Unsplash, Pexels)
+2. 6 foto devono essere "critiche" (foto 2, 5, 7, 8, 9, 10)
+3. Sulle foto critiche:
+   - Aggiungi un piccolo bordo dorato (pennarello oro, washi tape)
+   - Scrivi un numero nascosto molto piccolo in un angolo:
+     - Foto 2: numero **4**
+     - Foto 5: numero **7**
+     - Foto 7: numero **2**
+     - Foto 8: numero **9**
+     - Foto 9: numero **1**
+     - Foto 10: numero **6**
+
+4. Soluzione: **472916**
+5. Spargi le 10 foto nelle ZONE B e C
+
+---
+
+### P10: Sequenza Finale
+
+**Cosa stampare**: 1 foglio + 1 QR code (opzionale)
+
+**QR Code finale** (opzionale):
+- Genera QR con testo: `PARADOX_RESET_COMPLETE`
+
+**Come prepararlo**:
+1. Stampa un foglio con scritta grande: **"PARADOX RESET ACTIVATED"**
+2. Opzionale: Metti in una scatola decorativa con QR code finale
+3. La scatola è il "premio" finale dopo aver completato P10
+
+---
+
+## 🎨 Tips per Stampare
+
+### Budget Zero
+- Stampa in bianco e nero
+- Usa carta normale
+- Disegna elementi a mano
+- QR codes piccoli (5×5 cm)
+
+### Con Budget (~€10-20)
+- Stampa a colori in copisteria
+- Usa carta color avorio per effetto vintage
+- Carta lucida per le foto (P09)
+- Mappa A3 a colori
+
+### Strumenti Utili
+- **QR Codes**: https://www.qr-code-generator.com
+- **Immagini vintage**: Unsplash, Pexels (cerca "vintage science")
+- **Font vintage**: "Courier", "Typewriter", "Old Newspaper"
+- **Invecchiamento carta**: caffè, tea, bordi bruciati (attenzione!)
+
+---
+
+## 📍 Posizionamento nella Stanza
+
+### ZONA A: Scrivania
+- P01: Foglio orologi ben visibile
+- P02: 5 documenti sparsi/impilati
+- P03: Diario chiuso o semi-aperto
+
+### ZONA B: Tavolo Centrale
+- P07: 4 biglietti nascosti (sotto oggetti, tra libri)
+- P09: 5-6 foto sparse sul tavolo
+
+### ZONA C: Parete/Libreria
+- P04: Mappa appesa/appoggiata
+- P09: 4-5 foto rimanenti vicino alla mappa
+
+---
+
+## ✅ Checklist Finale
+
+Prima di far iniziare il gioco:
+
+```
+□ P01: Foglio orologi con stelle stampato
+□ P02: 5 documenti con QR codes pronti
+□ P03: Diario con lettere evidenziate pronto
+□ P04: Mappa con 5 QR codes posizionata
+□ P07: 4 biglietti costanti nascosti
+□ P09: 10 foto (6 con bordo oro e numeri) sparse
+□ P10: Scatola finale pronta (opzionale)
+
+□ App aperta su 4 smartphone
+□ Stanza oscurata
+□ Atmosfera creata (luci, musica)
+□ Timer pronto a partire
+□ Hai letto tutte le soluzioni
+```
+
+---
+
+## 🎬 Il Giorno del Gioco
+
+1. **60 min prima**: Setup completo stanza
+2. **30 min prima**: Test tutti i QR codes
+3. **15 min prima**: Accendi atmosfera (luci, musica)
+4. **10 min prima**: Apri app su tutti i device
+5. **00:00**: Fai entrare i giocatori!
+
+---
+
+**Buona preparazione, Game Master! 🎮**
+
+Per domande o problemi, consulta il README.md
