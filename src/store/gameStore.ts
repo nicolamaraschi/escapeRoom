@@ -13,6 +13,11 @@ interface GameState {
   score: number;
   inventory: string[];
 
+  // Sync state
+  isSyncing: boolean;
+  lastSyncTime: number | null;
+  syncError: string | null;
+
   // Actions
   setPlayerName: (name: string) => void;
   startGame: () => void;
@@ -25,6 +30,10 @@ interface GameState {
   isPuzzleUnlocked: (puzzleId: string, dependencies: string[]) => boolean;
   isPuzzleSolved: (puzzleId: string) => boolean;
   getHintsUsed: (puzzleId: string) => HintUsage[];
+
+  // Sync actions
+  syncWithServer: () => Promise<void>;
+  setSyncState: (isSyncing: boolean, error?: string | null) => void;
 }
 
 const initialState = {
@@ -37,7 +46,13 @@ const initialState = {
   hintsUsed: [],
   score: 1000,
   inventory: [],
+  isSyncing: false,
+  lastSyncTime: null,
+  syncError: null,
 };
+
+// Server URL - cambia con l'IP del tuo server
+const SERVER_URL = 'http://localhost:3000';
 
 export const useGameStore = create<GameState>()(
   persist(
@@ -123,6 +138,59 @@ export const useGameStore = create<GameState>()(
 
       getHintsUsed: (puzzleId: string) => {
         return get().hintsUsed.filter(h => h.puzzleId === puzzleId);
+      },
+
+      // Sincronizzazione con il server
+      syncWithServer: async () => {
+        const state = get();
+
+        // Evita sync multipli simultanei
+        if (state.isSyncing) return;
+
+        set({ isSyncing: true, syncError: null });
+
+        try {
+          // Invia lo stato locale al server
+          const response = await fetch(`${SERVER_URL}/game-state`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              currentAct: state.currentAct,
+              solvedPuzzles: state.solvedPuzzles,
+              score: state.score,
+            }),
+          });
+
+          if (!response.ok) {
+            throw new Error(`Server error: ${response.status}`);
+          }
+
+          const data = await response.json();
+
+          // Aggiorna lo stato locale con quello merged dal server
+          if (data.success && data.state) {
+            set({
+              currentAct: data.state.currentAct,
+              solvedPuzzles: data.state.solvedPuzzles,
+              score: Math.max(state.score, data.state.score), // Mantieni il punteggio più alto
+              isSyncing: false,
+              lastSyncTime: Date.now(),
+              syncError: null,
+            });
+          } else {
+            throw new Error('Invalid server response');
+          }
+        } catch (error) {
+          console.error('Sync error:', error);
+          set({
+            isSyncing: false,
+            syncError: error instanceof Error ? error.message : 'Errore di sincronizzazione'
+          });
+        }
+      },
+
+      setSyncState: (isSyncing: boolean, error: string | null = null) => {
+        set({ isSyncing, syncError: error });
       }
     }),
     {

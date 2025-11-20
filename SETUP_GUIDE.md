@@ -9,37 +9,40 @@ Questa guida ti aiuta a preparare tutti i materiali fisici necessari per giocare
 **Cosa stampare**: 1 foglio A4
 
 **Come prepararlo**:
-1. Disegna 4 orologi digitali con ore diverse:
-   - Orologio 1: 03:00 (disegna 2 stelle sopra) ✶✶
-   - Orologio 2: 07:00 (disegna 3 stelle sopra) ✶✶✶
-   - Orologio 3: 02:00 (disegna 1 stella sopra) ✶
-   - Orologio 4: 11:00 (disegna 2 stelle sopra) ✶✶
+1. Disegna 4 orologi con numeri romani e operazioni:
+   - Orologio ROSSO: 8 ore, sopra "III", sotto "-5"
+   - Orologio VERDE: 7 ore, sopra "II", sotto "+33"
+   - Orologio BLU: 3 ore, sopra "IV", sotto "+9"
 
-2. Soluzione: 3×2=06, 7×3=21, 2×1=02, 11×2=22 → **062122**
-   (Nota: nella config app la soluzione è 062102, aggiustare se necessario)
+2. Soluzione: 
+   - ROSSO: III (3) × 8 = 24, poi -5 = **19**
+   - VERDE: II (2) × 7 = 14, poi +33 = **47**
+   - BLU: IV (4) × 3 = 12, poi +9 = **21**
+   - Codice finale: **194721**
 
 **Template suggerito**:
 ```
 ┌─────────────────────────────┐
-│   ✶✶                        │
+│  OROLOGIO ROSSO             │
+│       III                   │
 │   ╔═══════╗                 │
-│   ║ 03:00 ║                 │
+│   ║  8:00 ║                 │
 │   ╚═══════╝                 │
+│       -5                    │
 │                             │
-│   ✶✶✶                       │
+│  OROLOGIO VERDE             │
+│       II                    │
 │   ╔═══════╗                 │
-│   ║ 07:00 ║                 │
+│   ║  7:00 ║                 │
 │   ╚═══════╝                 │
+│      +33                    │
 │                             │
-│   ✶                         │
+│  OROLOGIO BLU               │
+│       IV                    │
 │   ╔═══════╗                 │
-│   ║ 02:00 ║                 │
+│   ║  3:00 ║                 │
 │   ╚═══════╝                 │
-│                             │
-│   ✶✶                        │
-│   ╔═══════╗                 │
-│   ║ 11:00 ║                 │
-│   ╚═══════╝                 │
+│       +9                    │
 └─────────────────────────────┘
 ```
 
@@ -71,27 +74,37 @@ Questa guida ti aiuta a preparare tutti i materiali fisici necessari per giocare
 
 ### P03: Il Diario del Dr. Vance
 
-**Cosa stampare**: 5 pagine A4 + post-it colorati
+**Cosa stampare**: 8 pagine A4 + post-it colorati
 
 **Come prepararlo**:
-1. Scrivi 5 pagine di "diario" con testo fittizio
-2. In ogni pagina, evidenzia 1 lettera in giallo:
-   - Pagina 1: evidenzia una **M**
+1. Scrivi 8 pagine di "diario" con testo fittizio
+2. In ogni pagina, evidenzia 1 lettera in GIALLO (ignora altre lettere colorate):
+   - Pagina 1: evidenzia una **P**
    - Pagina 2: evidenzia una **A**
    - Pagina 3: evidenzia una **R**
-   - Pagina 4: evidenzia una **Z**
-   - Pagina 5: evidenzia una **O**
+   - Pagina 4: evidenzia una **A**
+   - Pagina 5: evidenzia una **D**
+   - Pagina 6: evidenzia una **O**
+   - Pagina 7: evidenzia una **S**
+   - Pagina 8: evidenzia una **S**
+   - (Pagina 9: evidenzia una **O** - se vuoi fare 9 pagine)
 
-3. Soluzione: **MARZO**
+3. **IMPORTANTE**: Ogni pagina ha DUE numeri:
+   - Un numero GRANDE (falso, per confondere)
+   - Un numero PICCOLISSIMO nell'angolo (vero ordine)
+   
+4. Soluzione: **PARADOSSO**
 
 **Esempio pagina 1**:
 ```
 Data: 12 Marzo 1967
 
-Oggi abbia**M**o fatto progressi
+Oggi abbiamo fatto **P**rogressi
 straordinari con il Test Omega.
 Il dispositivo sembra rispondere
 alle frequenze temporali...
+
+[Numero grande: 5]        [Numero piccolo angolo: 1]
 ```
 
 4. Metti un post-it colorato su ogni pagina
@@ -157,7 +170,8 @@ Questi puzzle sono interamente digitali, nessun materiale fisico necessario.
 ```
 
 2. Nascondi questi biglietti nella ZONA B (tavolo)
-3. Soluzione finale: **29960602**
+3. Soluzione finale: **29979745**
+   - Formula: primi 4 digit di c (299792) = 2997, poi 97, poi 45 = 29979745
 
 ---
 
@@ -169,23 +183,26 @@ Puzzle digitale, nessun materiale fisico.
 
 ### P09: Archivio Olografico
 
-**Cosa stampare**: 10 foto vintage A5 o A6
+**Cosa stampare**: 12 foto vintage A5 o A6 (6 normali + 6 "chiave")
 
 **Come prepararlo**:
-1. Scarica 10 immagini vintage/sci-fi (es. da Unsplash, Pexels)
-2. 6 foto devono essere "critiche" (foto 2, 5, 7, 8, 9, 10)
-3. Sulle foto critiche:
-   - Aggiungi un piccolo bordo dorato (pennarello oro, washi tape)
-   - Scrivi un numero nascosto molto piccolo in un angolo:
-     - Foto 2: numero **4**
-     - Foto 5: numero **7**
-     - Foto 7: numero **2**
-     - Foto 8: numero **9**
-     - Foto 9: numero **1**
-     - Foto 10: numero **6**
+1. Scarica 12 immagini vintage/sci-fi (es. da Unsplash, Pexels)
+2. 6 foto devono essere "chiave" con QR code nell'angolo
+3. Sulle 6 foto chiave:
+   - Stampa su carta trasparente o lucida (per sovrapposizione)
+   - Aggiungi un QR code nell'angolo che indica l'ordine (Layer 1, 2, 3, 4, 5, 6)
+   - Quando sovrapposte contro luce, formano simboli geometrici
 
-4. Soluzione: **472916**
-5. Spargi le 10 foto nelle ZONE B e C
+4. Crea un poster "Legenda Crittografica" con:
+   - Cerchio = **8**
+   - Quadrato = **3**
+   - Triangolo = **7**
+   - Stella = **4**
+   - Rombo = **2**
+   - Esagono = **9**
+
+5. Soluzione (leggendo i simboli sovrapposti): **837429**
+6. Spargi le 12 foto nelle ZONE B e C
 
 ---
 
@@ -247,12 +264,12 @@ Puzzle digitale, nessun materiale fisico.
 Prima di far iniziare il gioco:
 
 ```
-□ P01: Foglio orologi con stelle stampato
+□ P01: Foglio orologi con numeri romani stampato
 □ P02: 5 documenti con QR codes pronti
 □ P03: Diario con lettere evidenziate pronto
 □ P04: Mappa con 5 QR codes posizionata
 □ P07: 4 biglietti costanti nascosti
-□ P09: 10 foto (6 con bordo oro e numeri) sparse
+□ P09: 12 foto (6 chiave con QR + 6 normali) sparse + poster Legenda
 □ P10: Scatola finale pronta (opzionale)
 
 □ App aperta su 4 smartphone

@@ -4,6 +4,8 @@ import { PUZZLES, getPuzzlesByAct } from '../data/puzzles';
 import { PuzzleCard } from '../components/PuzzleCard';
 import { Timer } from '../components/Timer';
 import { STORY } from '../data/story';
+import { SyncButton } from '../components/SyncButton';
+import { useAutoSync } from '../hooks/useAutoSync';
 
 export const Dashboard: React.FC = () => {
   const navigate = useNavigate();
@@ -13,8 +15,14 @@ export const Dashboard: React.FC = () => {
     solvedPuzzles,
     score,
     startTime,
-    isPuzzleUnlocked
+    isPuzzleUnlocked,
+    isSyncing,
+    lastSyncTime,
+    syncError
   } = useGameStore();
+
+  // Abilita sincronizzazione automatica
+  useAutoSync(true);
 
   const totalPuzzles = PUZZLES.length;
   const solvedCount = solvedPuzzles.length;
@@ -41,7 +49,18 @@ export const Dashboard: React.FC = () => {
               <h1 className="text-2xl font-bold text-gradient">
                 Osservatorio Temporale Omega
               </h1>
-              <p className="text-text-dim">Agente: {playerName}</p>
+              <div className="flex items-center gap-2">
+                <p className="text-text-dim">Agente: {playerName}</p>
+                {isSyncing && (
+                  <span className="text-xs text-primary animate-pulse">🔄 Sync...</span>
+                )}
+                {!isSyncing && lastSyncTime && (
+                  <span className="text-xs text-green-500">✓ Sincronizzato</span>
+                )}
+                {syncError && (
+                  <span className="text-xs text-danger" title={syncError}>⚠️ Errore sync</span>
+                )}
+              </div>
             </div>
             <Timer startTime={startTime} critical={true} />
           </div>
@@ -138,6 +157,9 @@ export const Dashboard: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Pulsante di sincronizzazione */}
+      <SyncButton />
     </div>
   );
 };

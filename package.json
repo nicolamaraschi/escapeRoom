@@ -3,12 +3,14 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
+ "scripts": {
+  "dev": "vite",
+  "build": "vite build", 
+  "lint": "eslint .",
+  "preview": "vite preview",
+  "server": "cd ./escape-room-server && node server.js",
+  "start:all": "concurrently \"npm run server\" \"npm run preview -- --host\""
+},
   "dependencies": {
     "howler": "^2.2.4",
     "html5-qrcode": "^2.3.8",
@@ -25,6 +27,7 @@
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.4",
     "autoprefixer": "^10.4.21",
+    "concurrently": "^8.2.2",
     "eslint": "^9.36.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
