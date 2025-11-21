@@ -1,5 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { ref, set as setFirebase, onValue, update } from 'firebase/database';
+import { db } from '../firebase';
 import type { Act, HintLevel, HintUsage } from '../types';
 
 interface GameState {
@@ -32,12 +34,12 @@ interface GameState {
   getHintsUsed: (puzzleId: string) => HintUsage[];
 
   // Sync actions
-  syncWithServer: () => Promise<void>;
+  syncWithServer: () => void;
   setSyncState: (isSyncing: boolean, error?: string | null) => void;
 }
 
 const initialState = {
-  sessionId: '',
+  sessionId: 'default-session', // Shared session for all players
   playerName: '',
   startTime: null,
   endTime: undefined,
@@ -51,9 +53,6 @@ const initialState = {
   syncError: null,
 };
 
-// Server URL - cambia con l'IP del tuo server
-const SERVER_URL = 'http://localhost:3000';
-
 export const useGameStore = create<GameState>()(
   persist(
     (set, get) => ({
@@ -61,16 +60,32 @@ export const useGameStore = create<GameState>()(
 
       setPlayerName: (name: string) => set({ playerName: name }),
 
-      startGame: () => set({
-        startTime: Date.now(),
-        sessionId: crypto.randomUUID()
-      }),
+      startGame: () => {
+        const state = get();
+        const startTime = Date.now();
+        set({ startTime });
 
-      endGame: () => set({ endTime: Date.now() }),
+        // Initialize game in Firebase if not exists
+        const gameRef = ref(db, `games/${state.sessionId}`);
+        update(gameRef, {
+          startTime,
+          lastUpdated: Date.now()
+        });
+      },
 
-      solvePuzzle: (puzzleId: string) => set((state) => {
+      endGame: () => {
+        const endTime = Date.now();
+        set({ endTime });
+        const state = get();
+        const gameRef = ref(db, `games/${state.sessionId}`);
+        update(gameRef, { endTime });
+      },
+
+      solvePuzzle: (puzzleId: string) => {
+        const state = get();
+
         if (state.solvedPuzzles.includes(puzzleId)) {
-          return state;
+          return;
         }
 
         const newSolved = [...state.solvedPuzzles, puzzleId];
@@ -87,23 +102,48 @@ export const useGameStore = create<GameState>()(
           newScore += 50;
         }
 
-        return {
+        // Aggiorna stato locale
+        set({
           solvedPuzzles: newSolved,
           score: newScore,
           currentAct: newAct
-        };
-      }),
+        });
 
-      useHint: (puzzleId: string, level: HintLevel) => set((state) => {
+        // Aggiorna Firebase
+        const gameRef = ref(db, `games/${state.sessionId}`);
+        update(gameRef, {
+          solvedPuzzles: newSolved,
+          score: newScore,
+          currentAct: newAct,
+          lastUpdated: Date.now()
+        }).catch(error => {
+          console.error('Error syncing puzzle to Firebase:', error);
+        });
+      },
+
+      useHint: (puzzleId: string, level: HintLevel) => {
+        const state = get();
         const penalty = level === 3 ? 25 : level === 2 ? 15 : 10;
-        return {
-          hintsUsed: [
-            ...state.hintsUsed,
-            { puzzleId, level, timestamp: Date.now() }
-          ],
-          score: Math.max(0, state.score - penalty)
-        };
-      }),
+
+        const newHints = [
+          ...state.hintsUsed,
+          { puzzleId, level, timestamp: Date.now() }
+        ];
+        const newScore = Math.max(0, state.score - penalty);
+
+        set({
+          hintsUsed: newHints,
+          score: newScore
+        });
+
+        // Sync hints to Firebase
+        const gameRef = ref(db, `games/${state.sessionId}`);
+        update(gameRef, {
+          hintsUsed: newHints,
+          score: newScore,
+          lastUpdated: Date.now()
+        });
+      },
 
       addToInventory: (item: string) => set((state) => ({
         inventory: [...state.inventory, item]
@@ -120,15 +160,19 @@ export const useGameStore = create<GameState>()(
         return Math.round(state.score + timeBonus);
       },
 
-      resetGame: () => set(initialState),
+      resetGame: () => {
+        set(initialState);
+        // Reset Firebase as well
+        const gameRef = ref(db, `games/${initialState.sessionId}`);
+        setFirebase(gameRef, {
+          ...initialState,
+          lastUpdated: Date.now()
+        });
+      },
 
       isPuzzleUnlocked: (_puzzleId: string, dependencies: string[]) => {
         const state = get();
-
-        // Se non ha dipendenze, è sbloccato
         if (dependencies.length === 0) return true;
-
-        // Controlla se tutte le dipendenze sono risolte
         return dependencies.every(dep => state.solvedPuzzles.includes(dep));
       },
 
@@ -140,53 +184,42 @@ export const useGameStore = create<GameState>()(
         return get().hintsUsed.filter(h => h.puzzleId === puzzleId);
       },
 
-      // Sincronizzazione con il server
-      syncWithServer: async () => {
+      // Sincronizzazione Realtime con Firebase
+      syncWithServer: () => {
         const state = get();
-
-        // Evita sync multipli simultanei
         if (state.isSyncing) return;
 
-        set({ isSyncing: true, syncError: null });
+        set({ isSyncing: true });
+        const gameRef = ref(db, `games/${state.sessionId}`);
 
-        try {
-          // Invia lo stato locale al server
-          const response = await fetch(`${SERVER_URL}/game-state`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              currentAct: state.currentAct,
-              solvedPuzzles: state.solvedPuzzles,
-              score: state.score,
-            }),
-          });
-
-          if (!response.ok) {
-            throw new Error(`Server error: ${response.status}`);
-          }
-
-          const data = await response.json();
-
-          // Aggiorna lo stato locale con quello merged dal server
-          if (data.success && data.state) {
+        onValue(gameRef, (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
             set({
-              currentAct: data.state.currentAct,
-              solvedPuzzles: data.state.solvedPuzzles,
-              score: Math.max(state.score, data.state.score), // Mantieni il punteggio più alto
+              solvedPuzzles: data.solvedPuzzles || [],
+              currentAct: data.currentAct || 1,
+              score: data.score || 1000,
+              hintsUsed: data.hintsUsed || [],
+              startTime: data.startTime || null,
+              endTime: data.endTime,
               isSyncing: false,
               lastSyncTime: Date.now(),
               syncError: null,
             });
           } else {
-            throw new Error('Invalid server response');
+            // If no data exists, initialize it
+            setFirebase(gameRef, {
+              ...initialState,
+              lastUpdated: Date.now()
+            });
           }
-        } catch (error) {
-          console.error('Sync error:', error);
+        }, (error) => {
+          console.error('Firebase sync error:', error);
           set({
             isSyncing: false,
-            syncError: error instanceof Error ? error.message : 'Errore di sincronizzazione'
+            syncError: error.message
           });
-        }
+        });
       },
 
       setSyncState: (isSyncing: boolean, error: string | null = null) => {
@@ -199,3 +232,4 @@ export const useGameStore = create<GameState>()(
     }
   )
 );
+

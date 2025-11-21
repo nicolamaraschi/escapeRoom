@@ -155,7 +155,7 @@ npm run preview
 - **Build**: Vite
 - **Styling**: Tailwind CSS v3
 - **Routing**: React Router v6
-- **State**: Zustand con persist
+- **State**: Zustand + Firebase Realtime Database
 - **QR**: html5-qrcode
 
 ## 📁 Struttura
@@ -167,9 +167,10 @@ escapeRoom/
 │   ├── pages/           # Start, Briefing, Dashboard, Puzzle, Ending
 │   ├── puzzles/         # P01-P10 componenti puzzle
 │   ├── data/            # puzzles.ts, story.ts
-│   ├── store/           # gameStore.ts (Zustand)
+│   ├── store/           # gameStore.ts (Zustand + Firebase)
 │   ├── types/           # TypeScript interfaces
 │   ├── utils/           # checkSolution.ts
+│   ├── firebase.ts      # Firebase configuration
 │   └── App.tsx
 ├── public/
 │   ├── audio/
@@ -179,10 +180,10 @@ escapeRoom/
 
 ## 🎯 Features Future
 
-### v2.0 - Multiplayer Real-time
-- Backend con Supabase
-- Sincronizzazione real-time
-- P08 con vero sync buttons
+### v2.0 - Multiplayer Real-time (✅ IMPLEMENTATO)
+- Backend con Firebase Realtime Database
+- Sincronizzazione istantanea tra dispositivi
+- Stato condiviso per tutti i giocatori
 
 ### v2.1 - Audio & Media
 - P05 con vero audio mixer

@@ -3,15 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
- "scripts": {
-  "dev": "vite",
-  "build": "vite build", 
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "server": "cd ./escape-room-server && node server.js",
-  "start:all": "concurrently \"npm run server\" \"npm run preview -- --host\""
-},
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "server": "cd ./escape-room-server && node server.js",
+    "start:all": "concurrently \"npm run server\" \"npm run preview -- --host\""
+  },
   "dependencies": {
+    "firebase": "^12.6.0",
     "howler": "^2.2.4",
     "html5-qrcode": "^2.3.8",
     "react": "^19.1.1",

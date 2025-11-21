@@ -108,8 +108,8 @@ export const Ending: React.FC = () => {
                 <div className="text-sm text-text-dim mb-1">Rank Agente</div>
                 <div className="text-2xl font-bold text-primary">
                   {finalScore >= 1500 ? '⭐⭐⭐ LEGGENDARIO' :
-                   finalScore >= 1200 ? '⭐⭐ ECCELLENTE' :
-                   finalScore >= 900 ? '⭐ ESPERTO' : 'COMPETENTE'}
+                    finalScore >= 1200 ? '⭐⭐ ECCELLENTE' :
+                      finalScore >= 900 ? '⭐ ESPERTO' : 'COMPETENTE'}
                 </div>
               </div>
             </div>

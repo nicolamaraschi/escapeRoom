@@ -17,14 +17,9 @@ export const useAutoSync = (enabled: boolean = true) => {
         // Sync iniziale immediato
         syncWithServer();
 
-        // Polling ogni 5 secondi
-        const interval = setInterval(() => {
-            syncWithServer();
-        }, 5000);
+        // Sync iniziale immediato (Firebase onValue gestirà gli aggiornamenti successivi)
+        syncWithServer();
 
-        // Cleanup quando il componente viene smontato
-        return () => {
-            clearInterval(interval);
-        };
+        // Nessun polling necessario con Firebase Realtime Database
     }, [enabled, startTime, syncWithServer]);
 };
